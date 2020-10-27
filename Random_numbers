@@ -1,0 +1,28 @@
+def is_valid(x):
+    if 1 <= x <= n:
+        return True
+    return print('А может быть все-таки введем целое число от 1 до 100?')
+
+
+from random import *
+print('Добро пожаловать в числовую угадайку')
+print('Выберите границу чисел')
+n = int(input())
+num = randrange(1, n+1)
+x = 0
+count = 0
+rep = ''
+while rep != 'no':
+    x = int(input())
+    if is_valid(x) == True:
+        count += 1
+        if x > num:
+            print('Слишком много, попробуйте еще раз')
+        elif x < num:
+            print('Слишком мало, попробуйте еще раз')
+        else:
+            print('Вы угадали, поздравляем!', '\n', 'Число ваших попыток равно', count)
+            rep = input(print('Сыграть ещё раз?'))
+    else:
+        continue
+print('Спасибо, что играли в числовую угадайку. Еще увидимся...')
