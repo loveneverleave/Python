@@ -18,24 +18,28 @@ if lang == 'ru':
                 i = rus_upper_alphabet.find(c) + shift
                 if i > 31:
                     i = i - 32
-                data = data.replace(c, rus_upper_alphabet[i], 1)
+                y = y + rus_upper_alphabet[i]
             elif c.lower() == c and c.isalpha() == True:
                 i = rus_lower_alphabet.find(c) + shift
                 if i > 31:
                     i = i - 32
-                data = data.replace(c, rus_lower_alphabet[i], 1)
+                y = y + rus_lower_alphabet[i]
+            else:
+                y = y + c
     elif action == 'de':
         for c in data:
             if c.upper() == c and c.isalpha() == True:
                 i = rus_upper_alphabet.find(c) - shift
                 if i < 0:
                     i = i + 32
-                data = data.replace(c, rus_upper_alphabet[i], 1)
+                y = y + rus_upper_alphabet[i]
             elif c.lower() == c and c.isalpha() == True:
                 i = rus_lower_alphabet.find(c) - shift
                 if i < 0:
                     i = i - 32
-                data = data.replace(c, rus_lower_alphabet[i], 1)
+                y = y + rus_lower_alphabet[i]
+            else:
+                y = y + c
 if lang == 'eng':
     if action == 'en':
         for c in data:
@@ -43,22 +47,26 @@ if lang == 'eng':
                 i = eng_upper_alphabet.find(c) + shift
                 if i > 31:
                     i = i - 32
-                data = data.replace(c, eng_upper_alphabet[i], 1)
+                y = y + eng_upper_alphabet[i]
             elif c.lower() == c and c.isalpha() == True:
                 i = eng_lower_alphabet.find(c) + shift
                 if i > 31:
                     i = i - 32
-                data = data.replace(c, eng_lower_alphabet[i], 1)
+                y = y + eng_lower_alphabet[i]
+            else:
+                y = y + c
     elif action == 'de':
         for c in data:
             if c.upper() == c and c.isalpha() == True:
                 i = eng_upper_alphabet.find(c) - shift
                 if i < 0:
                     i = i + 32
-                data = data.replace(c, eng_upper_alphabet[i], 1)
+                y = y + eng_upper_alphabet[i]
             elif c.lower() == c and c.isalpha() == True:
                 i = eng_lower_alphabet.find(c) - shift
                 if i < 0:
                     i = i - 32
-                data = data.replace(c, eng_lower_alphabet[i], 1)
-print(data)
+                y = y + eng_lower_alphabet[i]
+            else:
+                y = y + c
+print(y)
