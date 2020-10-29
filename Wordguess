@@ -1,0 +1,123 @@
+from random import *
+word_list =  'аист акула бабуин баран барсук бобр бык верблюд волк воробей ворон выдра голубь гусь жаба зебра змея индюк кит кобра коза козел койот корова кошка кролик крыса курица лама ласка лебедь лев лиса лосось лось лягушка медведь моллюск моль мул муравей мышь норка носорог обезьяна овца окунь олень орел осел панда паук питон попугай пума семга скунс собака сова тигр тритон тюлень утка форель хорек черепаха ястреб ящерица'.split()
+abc = []
+def get_word():
+  print('Загадываем слово')
+  word = choice(word_list).upper()
+  return word
+def display_hangman(tries):
+    stages = [  # финальное состояние: голова, торс, обе руки, обе ноги
+                '''
+                   --------
+                   |      |
+                   |      O
+                   |     \\|/
+                   |      |
+                   |     / \\
+                   -
+                ''',
+                # голова, торс, обе руки, одна нога
+                '''
+                   --------
+                   |      |
+                   |      O
+                   |     \\|/
+                   |      |
+                   |     / 
+                   -
+                ''',
+                # голова, торс, обе руки
+                '''
+                   --------
+                   |      |
+                   |      O
+                   |     \\|/
+                   |      |
+                   |      
+                   -
+                ''',
+                # голова, торс и одна рука
+                '''
+                   --------
+                   |      |
+                   |      O
+                   |     \\|
+                   |      |
+                   |     
+                   -
+                ''',
+                # голова и торс
+                '''
+                   --------
+                   |      |
+                   |      O
+                   |      |
+                   |      |
+                   |     
+                   -
+                ''',
+                # голова
+                '''
+                   --------
+                   |      |
+                   |      O
+                   |    
+                   |      
+                   |     
+                   -
+                ''',
+                # начальное состояние
+                '''
+                   --------
+                   |      |
+                   |      
+                   |    
+                   |      
+                   |     
+                   -
+                '''
+    ]
+    return stages[tries]
+def play(word):
+  tries = 6
+  print('Давайте играть в угадайку слов!')
+  print(display_hangman(tries))
+  print(len(word)*'_ ')
+  passw = len(word)*'_'
+  while tries > 0:
+    b = 1
+    print(passw)
+    letter = input()
+    for i in range(len(abc)):
+      if letter.upper() == abc[i]:
+        b = 0
+        print('Данная буква уже отгадана')
+        continue
+    abc.append(letter)
+    count = 0
+    for j in range(len(word)):
+      if len(letter) == 1 and b == 1:
+        if letter.upper() == word[j] and j != 0:
+          passw = passw[:j] + letter.upper() + passw[j+1:]
+        if letter.upper() == word[j] and j == 0:
+          passw = letter.upper() + passw[j+1:]
+      if passw == word:
+        print('Поздравляю, вы победили!')
+        return
+      if letter.upper() == word:
+        print('Поздравляю, вы победили!')
+        return
+      if letter.upper() != word[j]:
+        count += 1
+      if count == len(word):
+        tries = tries - 1
+        print(display_hangman(tries))
+      if tries == 0:
+        print(word)
+        print(display_hangman(tries))
+rep = "a"
+while rep != 'нет':
+  word = get_word()
+  play(word)
+  print('Желаете сыграть ещё раз? да/нет')
+  rep = input()
