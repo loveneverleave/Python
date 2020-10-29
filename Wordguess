@@ -93,15 +93,16 @@ def play(word):
         b = 0
         print('Данная буква уже отгадана')
         continue
-    abc.append(letter)
+    abc.append(letter.upper())
     count = 0
     for j in range(len(word)):
       if len(letter) == 1 and b == 1:
         if letter.upper() == word[j] and j != 0:
           passw = passw[:j] + letter.upper() + passw[j+1:]
-        if letter.upper() == word[j] and j == 0:
-          passw = letter.upper() + passw[j+1:]
+        if letter.upper() == word[0]:
+          passw = letter.upper() + passw[1:]
       if passw == word:
+        print(passw)
         print('Поздравляю, вы победили!')
         return
       if letter.upper() == word:
